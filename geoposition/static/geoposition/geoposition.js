@@ -46,6 +46,8 @@ if (jQuery != undefined) {
                                 marker.setPosition(result.geometry.location);
                                 google.maps.event.trigger(marker, 'dragend');
                             };
+							
+							window.write(results)
                             
                             if (results.length == 1) {
                                 updatePosition(results[0]);
