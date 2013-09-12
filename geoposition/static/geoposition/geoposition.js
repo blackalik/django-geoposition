@@ -109,7 +109,7 @@ if (jQuery != undefined) {
     
     $(document).ready(function() {
         var $script = $('<script/>');
-        $script.attr('src', 'https://maps.google.com/maps/api/js?sensor=false&callback=geopositionMapInit');
+        $script.attr('src', 'https://maps.googleapis.com/maps/api/js?libraries=places&sensor=false');
         $script.appendTo('body');
     });
 })(django.jQuery);
