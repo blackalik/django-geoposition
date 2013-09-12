@@ -103,11 +103,13 @@ if (jQuery != undefined) {
                         $addressRow.text(results[0].formatted_address);
 						
 						var path = results[0].address_components[0].long_name;
-                        $.each(results[0].address_components, function(i, result) {
+						
+						var length = "/"
+						for (var i = 0; i < length; i++) {
+							element = results[0].address_components[i];
 							path.concat('/');
 							path.concat(result.long_name);
-                        });
-						
+						}
 						$pathField.val(path)
                     }
                 });
