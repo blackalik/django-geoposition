@@ -38,7 +38,7 @@ class GeopositionField(models.Field):
             longitude = '0.0'
             
         try:
-            longitude = value_parts[2]
+            path = value_parts[2]
         except IndexError:
             path = '-'
 
