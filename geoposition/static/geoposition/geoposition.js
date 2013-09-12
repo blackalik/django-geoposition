@@ -101,7 +101,14 @@ if (jQuery != undefined) {
                     $addressRow.text('');
                     if (results[0]) {
                         $addressRow.text(results[0].formatted_address);
-						$pathField.val(results[0].formatted_address)
+						
+						var path = "";
+                        $.each(results[0].address_components, function(i, result) {
+							path.concat('/');
+							path.concat(result.long_name);
+                        });
+						
+						$pathField.val(path)
                     }
                 });
             });
