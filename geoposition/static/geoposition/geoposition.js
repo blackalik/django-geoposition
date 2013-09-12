@@ -107,7 +107,7 @@ if (jQuery != undefined) {
 						var length = results[0].address_components.length
 						for (var i = 0; i < length; i++) {
 							result = results[0].address_components[i];
-							if($.inArray('political', result.types) == -1) {
+							if($.inArray('political', result.types) != -1 && $.inArray('locality', result.types) == -1) {
 								path = path + "/" + result.long_name;
 							}
 						}
