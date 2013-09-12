@@ -106,7 +106,7 @@ if (jQuery != undefined) {
 						
 						var length = results[0].address_components.length
 						for (var i = 0; i < length; i++) {
-							element = results[0].address_components[i];
+							result = results[0].address_components[i];
 							path.concat('/');
 							path.concat(result.long_name);
 						}
