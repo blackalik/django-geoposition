@@ -30,12 +30,15 @@ if (jQuery != undefined) {
                 if (e.keyCode == 13) {
                     e.preventDefault();
                     var $input = $(this),
-                        gc = new google.maps.Geocoder();
+                       // gc = new google.maps.Geocoder(),
+						service = new google.maps.places.PlacesService(map);
+						
                     $input.parent().find('ul.geoposition-results').remove();
-                    gc.geocode({
-                        'name': $(this).val()
+                    //gc.geocode({
+					service.textSearch({
+                        'query': $(this).val()
                     }, function(results, status) {
-                        if (status == 'OK') {
+                        if (status == google.maps.places.PlacesServiceStatus.OK) {
                             var updatePosition = function(result) {
                                 if (result.geometry.bounds) {
                                     map.fitBounds(result.geometry.bounds);
