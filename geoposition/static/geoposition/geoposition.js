@@ -99,7 +99,7 @@ if (jQuery != undefined) {
                     'latLng': marker.position
                 }, function(results, status) {
                     $addressRow.text('');
-                    if (results[0]) {
+                    if (results && results[0]) {
                         $addressRow.text(results[0].formatted_address);
 						
 						var path = "";
@@ -107,8 +107,8 @@ if (jQuery != undefined) {
 						var length = results[0].address_components.length
 						for (var i = 0; i < length; i++) {
 							result = results[0].address_components[i];
-                            if($.inArray('political', result.types)) {
-								path.concat(result.long_name);
+							if($.inArray('political', result.types) == -1) {
+								path = path + "/" + result.long_name;
 							}
 						}
 						$pathField.val(path)
