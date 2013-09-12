@@ -21,7 +21,7 @@ if (jQuery != undefined) {
 				$pathField = $container.find('input.geoposition:eq(2)'),
                 latitude = parseFloat($latitudeField.val()) || 0,
                 longitude = parseFloat($longitudeField.val()) || 0,
-				path = parseFloat($pathField.val()) || '-',
+				path = $pathField.val() || '-',
                 map,
                 mapLatLng,
                 mapOptions,
@@ -102,16 +102,16 @@ if (jQuery != undefined) {
                     if (results && results[0]) {
                         $addressRow.text(results[0].formatted_address);
 						
-						var path = "";
+						var new_path = "";
 						
 						var length = results[0].address_components.length
 						for (var i = length-1; i >= 0; i--) {
 							result = results[0].address_components[i];
 							if($.inArray('political', result.types) != -1 && $.inArray('locality', result.types) == -1) {
-								path = path + "/" + result.long_name;
+								new_path = new_path + "/" + result.long_name;
 							}
 						}
-						$pathField.val(path)
+						$pathField.val(new_path)
                     }
                 });
             });
