@@ -18,8 +18,10 @@ if (jQuery != undefined) {
                 $searchInput = $('<input>', {'type': 'search', 'placeholder': 'Search …'}),
                 $latitudeField = $container.find('input.geoposition:eq(0)'),
                 $longitudeField = $container.find('input.geoposition:eq(1)'),
+				$pathField = $container.find('input.geoposition:eq(2)'),
                 latitude = parseFloat($latitudeField.val()) || 0,
                 longitude = parseFloat($longitudeField.val()) || 0,
+				path = parseFloat($pathField.val()) || '-',
                 map,
                 mapLatLng,
                 mapOptions,
@@ -99,6 +101,7 @@ if (jQuery != undefined) {
                     $addressRow.text('');
                     if (results[0]) {
                         $addressRow.text(results[0].formatted_address);
+						$pathField.val(results[0].formatted_address)
                     }
                 });
             });
