@@ -46,24 +46,24 @@ if (jQuery != undefined) {
                                 marker.setPosition(result.geometry.location);
                                 google.maps.event.trigger(marker, 'dragend');
                             };
-							
-							window.write(results)
                             
-                            if (results.length == 1) {
-                                updatePosition(results[0]);
-                            } else {
-                                var $ul = $('<ul />', {'class': 'geoposition-results'});
-                                $.each(results, function(i, result) {
-                                    var $li = $('<li />');
-                                    $li.text(result.formatted_address);
-                                    $li.bind('click', function() {
-                                        updatePosition(result);
-                                        $li.closest('ul').remove();
-                                    });
-                                    $li.appendTo($ul);
+                            var $ul = $('<ul />', {'class': 'geoposition-results'});
+                            $.each(results, function(i, result) {
+                                var $li = $('<li />');
+                                $li.text(result.formatted_address);
+                                $li.bind('click', function() {
+                                    updatePosition(result);
+                                    $li.closest('ul').remove();
                                 });
-                                $input.after($ul);
-                            }
+                                $li.appendTo($ul);
+                            });
+                            $input.after($ul);
+							
+                            // if (results.length == 1) {
+                            //     updatePosition(results[0]);
+                            // } else {
+                            //     
+                            // }
                         }
                     });
                 }
