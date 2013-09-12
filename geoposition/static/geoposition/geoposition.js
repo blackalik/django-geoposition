@@ -33,7 +33,7 @@ if (jQuery != undefined) {
                         gc = new google.maps.Geocoder();
                     $input.parent().find('ul.geoposition-results').remove();
                     gc.geocode({
-                        'address': $(this).val()
+                        'name': $(this).val()
                     }, function(results, status) {
                         if (status == 'OK') {
                             var updatePosition = function(result) {
