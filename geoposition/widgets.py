@@ -7,13 +7,14 @@ class GeopositionWidget(forms.MultiWidget):
         widgets = (
             forms.TextInput(),
             forms.TextInput(),
+            forms.TextInput(),
         )
         super(GeopositionWidget, self).__init__(widgets, attrs)
     
     def decompress(self, value):
         if value:
-            return [value.latitude, value.longitude]
-        return [None,None]
+            return [value.latitude, value.longitude, value.path]
+        return [None,None,None]
     
     def format_output(self, rendered_widgets):
         return render_to_string('geoposition/widgets/geoposition.html', {
@@ -24,6 +25,10 @@ class GeopositionWidget(forms.MultiWidget):
             'longitude': {
                 'html': rendered_widgets[1],
                 'label': _("longitude"),
+            },
+            'path': {
+                'html': rendered_widgets[2],
+                'label': _("path"),
             },
         })
     

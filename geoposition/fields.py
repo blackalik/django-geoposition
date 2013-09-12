@@ -6,13 +6,13 @@ from django.utils.encoding import smart_unicode
 
 
 class GeopositionField(models.Field):
-    description = "A geoposition (latitude and longitude)"
+    description = "A geoposition (latitude and longitude and path)"
     __metaclass__ = models.SubfieldBase
 
     def __init__(self, *args, **kwargs):
-        kwargs['max_length'] = 42
+        kwargs['max_length'] = 300
         if not 'default' in kwargs:
-            kwargs['default'] = "0,0"
+            kwargs['default'] = "0,0,-"
         super(GeopositionField, self).__init__(*args, **kwargs)
 
     def get_internal_type(self):
@@ -20,11 +20,11 @@ class GeopositionField(models.Field):
 
     def to_python(self, value):
         if not value:
-            return Geoposition(0, 0)
+            return Geoposition(0, 0, '-')
         if isinstance(value, Geoposition):
             return value
         if isinstance(value, list):
-            return Geoposition(value[0], value[1])
+            return Geoposition(value[0], value[1], value[2])
 
         # default case is string
         value_parts = value.rsplit(',')
@@ -36,8 +36,13 @@ class GeopositionField(models.Field):
             longitude = value_parts[1]
         except IndexError:
             longitude = '0.0'
+            
+        try:
+            longitude = value_parts[2]
+        except IndexError:
+            path = '-'
 
-        return Geoposition(latitude, longitude)
+        return Geoposition(latitude, longitude, path)
 
     def get_prep_value(self, value):
         return unicode(value)
