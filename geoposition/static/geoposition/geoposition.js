@@ -102,13 +102,14 @@ if (jQuery != undefined) {
                     if (results[0]) {
                         $addressRow.text(results[0].formatted_address);
 						
-						var path = "/";
+						var path = "";
 						
 						var length = results[0].address_components.length
 						for (var i = 0; i < length; i++) {
 							result = results[0].address_components[i];
-							path.concat('/');
-							path.concat(result.long_name);
+                            if($.inArray('political', result.types)) {
+								path.concat(result.long_name);
+							}
 						}
 						$pathField.val(path)
                     }
