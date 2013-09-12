@@ -102,9 +102,9 @@ if (jQuery != undefined) {
                     if (results[0]) {
                         $addressRow.text(results[0].formatted_address);
 						
-						var path = results[0].address_components[0].long_name;
+						var path = "/";
 						
-						var length = "/"
+						var length = results[0].address_components.length
 						for (var i = 0; i < length; i++) {
 							element = results[0].address_components[i];
 							path.concat('/');
