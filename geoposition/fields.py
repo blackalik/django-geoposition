@@ -12,7 +12,7 @@ class GeopositionField(models.Field):
     def __init__(self, *args, **kwargs):
         kwargs['max_length'] = 300
         if not 'default' in kwargs:
-            kwargs['default'] = "0,0,-"
+            kwargs['default'] = "0,0,"
         super(GeopositionField, self).__init__(*args, **kwargs)
 
     def get_internal_type(self):
@@ -20,7 +20,7 @@ class GeopositionField(models.Field):
 
     def to_python(self, value):
         if not value:
-            return Geoposition(0, 0, '-')
+            return Geoposition(0, 0, '')
         if isinstance(value, Geoposition):
             return value
         if isinstance(value, list):

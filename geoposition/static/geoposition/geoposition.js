@@ -31,12 +31,8 @@ if (jQuery != undefined) {
             $searchInput.bind('keydown', function(e) {
                 if (e.keyCode == 13) {
                     e.preventDefault();
-                    var $input = $(this),
-                       // gc = new google.maps.Geocoder(),
-						service = new google.maps.places.PlacesService(map);
-						
+                    var $input = $(this), service = new google.maps.places.PlacesService(map);
                     $input.parent().find('ul.geoposition-results').remove();
-                    //gc.geocode({
 					service.textSearch({
                         'query': $(this).val()
                     }, function(results, status) {
@@ -63,12 +59,6 @@ if (jQuery != undefined) {
                                 $li.appendTo($ul);
                             });
                             $input.after($ul);
-							
-                            // if (results.length == 1) {
-                            //     updatePosition(results[0]);
-                            // } else {
-                            //     
-                            // }
                         }
                     });
                 }
