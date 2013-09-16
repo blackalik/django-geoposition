@@ -15,7 +15,7 @@ class GeopositionField(forms.MultiValueField):
         fields = (
             forms.DecimalField(label=_('latitude')),
             forms.DecimalField(label=_('longitude')),
-            forms.CharField(label=_('path'), readonly="readonly", editable=False), 
+            forms.CharField(label=_('path'), attrs={'readonly':'readonly'}), 
         )
         kwargs['required'] = False
         if 'initial' in kwargs:
