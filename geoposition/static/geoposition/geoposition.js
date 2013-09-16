@@ -21,7 +21,7 @@ if (jQuery != undefined) {
 				$pathField = $container.find('input.geoposition:eq(2)'),
                 latitude = parseFloat($latitudeField.val()) || 0,
                 longitude = parseFloat($longitudeField.val()) || 0,
-				path = $pathField.val() || '-',
+				path = $pathField.val() || '',
                 map,
                 mapLatLng,
                 mapOptions,
